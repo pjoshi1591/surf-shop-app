@@ -1,0 +1,22 @@
+<% layout('layouts/boilerplate') -%>
+<h1>Edit Posts</h1>
+<form action="/posts/<%= post.id %>?_method=PUT" method="POST" id="postEditForm" enctype="multipart/form-data">
+    <div><input type="text" name="post[title]" value="<%= post.title %>"></div>
+    <div><input type="text" name="post[price]" value="<%= post.price %>"></div>
+    <div>
+        <input type="file" id="imageUpload" accept="images/*" name="images" multiple>
+        <div>
+            <% post.images.forEach(function(image, i) { %>
+                <img src="<%= image.url %>" width="100px">
+                <label for="image<%= i %>">Delete?</label>
+                <input type="checkbox" class="imageDeleteCheckbox" name="deleteImages[]" id="image<%= i %>" value="<%= image.public_id %>">
+        <%    }) %>
+        </div>
+    </div>
+    <div><textarea name="post[description]" id="" cols="30" rows="10"><%= post.description %></textarea></div>
+    <div><input type="text" name="post[location]" value=<%= post.location %>></div>
+
+    <input type="submit">
+</form>
+
+<script src="/javascript/post-edit.js"></script>
