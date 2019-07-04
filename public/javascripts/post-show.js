@@ -23,3 +23,8 @@ $('.toggle-edit-form').on('click', function() {
     $(this).text() === 'Edit' ? $(this).text('Cancel') : $(this).text('Edit');
     $(this).siblings('.edit-review-form').toggle();
 });
+
+// Add click listener for clearing of rating from new/edit form
+$('.clear-rating').click(function() {
+    $(this).siblings('.input-no-rate').click();
+});

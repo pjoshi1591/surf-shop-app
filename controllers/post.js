@@ -11,7 +11,11 @@ cloudinary.config({
 
 module.exports = {
     async postIndex(req, res, next) {
-        const posts = await Post.find({});
+        const posts = await Post.paginate({}, {
+            page: req.query.page || 1,
+            limit: 10
+        });
+        posts.page = Number(posts.page);
         res.render('posts/index', { posts, title: 'Post Index' });
     },
 
@@ -112,6 +116,7 @@ module.exports = {
             await cloudinary.v2.uploader.destroy(image.public_id);
         }
         await post.remove();
+        req.session.success = 'Post deleted Successfully';
         res.redirect('/posts');
     }
 };
