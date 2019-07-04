@@ -12,7 +12,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const User = require('./models/user');
 const seedPosts = require('./seeds');
-seedPosts();
+// seedPosts();
 // Require routes
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/posts');
@@ -62,8 +62,8 @@ passport.deserializeUser(User.deserializeUser());
 // set local variable middleware
 app.use(function(req,res,next) {
   req.user = {
-    '_id' : '5d1aa795ecc7f20598a7404e',
-    'username': 'pjoshi'
+    '_id' : '5d1d6f598d46a3339ce340c0',
+    'username': 'pjoshi1591'
   }
   res.locals.currentUser = req.user;
   res.locals.title = 'Surf Shop';
