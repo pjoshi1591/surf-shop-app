@@ -11,7 +11,7 @@ const methodOverride = require('method-override');
 const logger = require('morgan');
 const passport = require('passport');
 const User = require('./models/user');
-const seedPosts = require('./seeds');
+// const seedPosts = require('./seeds');
 // seedPosts();
 // Require routes
 const indexRouter = require('./routes/index');
