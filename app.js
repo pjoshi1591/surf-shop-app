@@ -12,7 +12,9 @@ const logger = require('morgan');
 const passport = require('passport');
 const User = require('./models/user');
 const seedPosts = require('./seeds');
-// seedPosts();
+
+seedPosts();
+
 // Require routes
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/posts');
