@@ -1,6 +1,4 @@
-require('dotenv').config()
-
-mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+mapboxgl.accessToken = 'pk.eyJ1IjoicGpvc2hpMTUiLCJhIjoiY2plY3lyeW91MHZqbzJybWt4cmM2djF3YiJ9.yiNymklGOJL_8-z07LRf1A';
         
 var map = new mapboxgl.Map({
     container: 'map',

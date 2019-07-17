@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const createError = require('http-errors');
 const express = require('express');
@@ -61,10 +61,10 @@ passport.deserializeUser(User.deserializeUser());
 
 // set local variable middleware
 app.use(function(req,res,next) {
-  req.user = {
-    '_id' : '5d1d6f598d46a3339ce340c0',
-    'username': 'pjoshi1591'
-  }
+  // req.user = {
+  //   '_id' : '5d1d6f598d46a3339ce340c0',
+  //   'username': 'pjoshi1591'
+  // }
   res.locals.currentUser = req.user;
   res.locals.title = 'Surf Shop';
   res.locals.success = req.session.success || '';

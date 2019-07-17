@@ -16,3 +16,16 @@ a {
   max-width: 400px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+
+.color-green {
+  color: green;
+}
+
+.color-red {
+  color: red;
+}
+
+.profile-image {
+  width: 100px;
+  border-radius: 50%;
+}

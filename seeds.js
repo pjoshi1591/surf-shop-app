@@ -3,7 +3,7 @@ const Post = require('./models/post');
 const cities = require('./cities');
 
 async function seedPosts() {
-	await Post.remove({});
+	await Post.deleteMany({});
 	for(const i of new Array(600)) {
 		const random1000 = Math.floor(Math.random() * 1000);
 		const title = faker.lorem.word();
@@ -16,14 +16,11 @@ async function seedPosts() {
 				type: 'Point',
 				coordinates: [cities[random1000].longitude, cities[random1000].latitude],
 			},
-			author: {
-		    '_id' : '5d1d6f598d46a3339ce340c0',
-		    'username' : 'pjoshi159'
-		  }
+			author: '5d1d6f598d46a3339ce340c0'
 		}
 		let post = new Post(postData);
 		post.properties.description = `<strong><a href="/posts/${post._id}">${title}</a></strong><p>${post.location}</p><p>${description.substring(0, 20)}...</p>`;
-		post.save();
+		await post.save();
 	}
 	console.log('600 new posts created');
 }

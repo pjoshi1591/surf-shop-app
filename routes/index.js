@@ -1,39 +1,55 @@
 const express = require('express');
 const router = express.Router();
-const { landingPage ,postRegister, postLogin, getLogout } = require('../controllers/index');
-const { asyncErrorHandler } = require('../middleware/index');
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
+
+const { 
+  landingPage ,
+  getRegister,
+  postRegister,
+  getLogin, 
+  postLogin, 
+  getLogout,
+  getProfile,
+  updateProfile
+ } = require('../controllers/index');
+const { 
+  asyncErrorHandler, 
+  isLoggedIn,
+  isValidPassword,
+  changePassword
+ } = require('../middleware/index');
 
 /* GET home/landing page. */
 router.get('/', asyncErrorHandler(landingPage));
 
 /* GET /register */
-router.get('/register', (req, res, next) => {
-  res.send('GET /register');
-});
+router.get('/register', getRegister);
 
 /* POST /register */
-router.post('/register', asyncErrorHandler(postRegister));
+router.post('/register', upload.single('image'), asyncErrorHandler(postRegister));
 
 /* GET /login */
-router.get('/login', (req, res, next) => {
-  res.send('GET /login');
-});
+router.get('/login', getLogin);
 
 /* POST /login */
-router.post('/login', postLogin);
+router.post('/login', asyncErrorHandler(postLogin));
 
 /* Get /logout */
 router.get('/logout', getLogout);
 
 /* GET /profile */
-router.get('/profile', (req, res, next) => {
-  res.send('GET /profile');
-});
+router.get('/profile', isLoggedIn, asyncErrorHandler(getProfile));
 
-/* PUT /profile/:user_id */
-router.put('/profile/:user_id', (req, res, next) => {
-  res.send('PUT /profile/:user_id');
-});
+/* PUT /profile */
+router.put('/profile', 
+  isLoggedIn,
+  upload.single('image'), 
+  asyncErrorHandler(isValidPassword),
+  asyncErrorHandler(changePassword),
+  asyncErrorHandler(updateProfile)
+);
 
 /* GET /forgot-password */
 router.get('/forgot', (req, res, next) => {
